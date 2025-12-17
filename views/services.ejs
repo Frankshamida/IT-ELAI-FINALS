@@ -1,0 +1,42 @@
+<!-- Services Preview -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">My Services</h2>
+        <p class="section-subtitle">Professional solutions for your digital needs</p>
+        
+        <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <% services.slice(0, 3).forEach(service => { %>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="<%= service.icon %>"></i>
+                </div>
+                <h3 class="service-title"><%= service.title %></h3>
+                <p class="service-description"><%= service.description %></p>
+                
+                <div class="service-tech">
+                    <% service.technologies.slice(0, 3).forEach(tech => { %>
+                    <span class="tech-tag"><%= tech %></span>
+                    <% }); %>
+                    <% if (service.technologies.length > 3) { %>
+                    <span class="tech-tag">+<%= service.technologies.length - 3 %> more</span>
+                    <% } %>
+                </div>
+                
+                <a href="/services#<%= service.title.toLowerCase().replace(/\s+/g, '-') %>" 
+                   class="btn btn-secondary" style="margin-top: 1.5rem; width: 100%; text-align: center;">
+                    Learn More
+                </a>
+            </div>
+            <% }); %>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="/services" class="btn btn-primary">
+                <i class="fas fa-cogs"></i> View All Services
+            </a>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/chatbot') %>
+<%- include('partials/footer') %>

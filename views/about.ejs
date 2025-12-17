@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/header') %>
+    
+    <main>
+        <section class="hero" style="padding: 120px 0 60px;">
+            <div class="container">
+                <h1 style="text-align: center; margin-bottom: 2rem;">About Me</h1>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="container">
+                <div class="about-content">
+                    <div>
+                        <img src="/images/profile.jpg" alt="<%= name %>" 
+                             style="width: 100%; border-radius: 1rem; box-shadow: var(--shadow);">
+                    </div>
+                    <div>
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;"><%= name %></h2>
+                        <p class="title" style="font-size: 1.25rem; color: var(--gray-color); margin-bottom: 1.5rem;">
+                            <%= title %>
+                        </p>
+                        <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+                            <%= about %>
+                        </p>
+                        
+                        <div class="education-timeline">
+                            <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem;">Education</h2>
+                            <% education.forEach(edu => { %>
+                            <div class="timeline-item">
+                                <h3><%= edu.degree %></h3>
+                                <p class="timeline-year"><%= edu.year %></p>
+                                <p style="font-weight: 500; color: var(--dark-color); margin-bottom: 0.5rem;">
+                                    <%= edu.institution %>
+                                </p>
+                                <ul style="padding-left: 1.25rem; color: var(--gray-color);">
+                                    <% edu.details.forEach(detail => { %>
+                                    <li><%= detail %></li>
+                                    <% }); %>
+                                </ul>
+                            </div>
+                            <% }); %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section skills-section">
+            <div class="container">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <div class="skills-grid">
+                    <% skills.forEach(skill => { %>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span><%= skill.name %></span>
+                            <span><%= skill.level %>%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: <%= skill.level %>%"></div>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <%- include('partials/chatbot') %>
+    <%- include('partials/footer') %>
+
+</body>
+</html>

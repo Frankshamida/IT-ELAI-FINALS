@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/header') %>
+    
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Hello, I'm <%= name.split(' ')[0] %></h1>
+                        <p class="title"><%= title %></p>
+                        <p><%= about %></p>
+                        <div class="hero-buttons">
+                            <a href="/projects" class="btn btn-primary">View My Work</a>
+                            <a href="/contact" class="btn btn-secondary">Contact Me</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="/images/profile.jpg" alt="<%= name %>" class="profile-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Tabs -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">My Skills</h2>
+                
+                <div class="skills-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="development">Development</button>
+                        <button class="tab-btn" data-tab="multimedia">Multimedia</button>
+                        <button class="tab-btn" data-tab="tools">Tools</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="development-tab">
+                        <div class="skills-grid">
+                            <% skills.slice(0, 8).forEach(skill => { %>
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <span><%= skill.name %></span>
+                                    <span><%= skill.level %>%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: <%= skill.level %>%"></div>
+                                </div>
+                            </div>
+                            <% }); %>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="multimedia-tab">
+                        <div class="skills-grid">
+                            <% skills.slice(8).forEach(skill => { %>
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <span><%= skill.name %></span>
+                                    <span><%= skill.level %>%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: <%= skill.level %>%"></div>
+                                </div>
+                            </div>
+                            <% }); %>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="tools-tab">
+                        <div class="tools-grid">
+                            <% multimediaTools.forEach(tool => { %>
+                            <div class="tool-item">
+                                <i class="<%= tool.icon %>"></i>
+                                <span><%= tool.name %></span>
+                            </div>
+                            <% }); %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Multimedia Showcase -->
+        <section class="section multimedia-showcase">
+            <div class="container">
+                <h2 class="section-title">Multimedia Portfolio</h2>
+                <p style="text-align: center; color: var(--gray-color); margin-bottom: 3rem;">
+                    Video editing, graphic design, and motion graphics samples
+                </p>
+                
+                <div class="multimedia-grid">
+                    <!-- Video Sample 1 -->
+                    <div class="multimedia-item">
+                        <div class="video-container">
+                            <iframe width="100%" height="315" 
+                                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="multimedia-content">
+                            <h3>Sample Video Edit - Travel Vlog</h3>
+                            <p>Color grading, transitions, and audio mixing using Adobe Premiere Pro</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Premiere Pro</span>
+                                <span class="tech-tag">Color Grading</span>
+                                <span class="tech-tag">Audio Mixing</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Sample 2 -->
+                    <div class="multimedia-item">
+                        <div class="video-container">
+                            <iframe width="100%" height="315" 
+                                    src="https://www.youtube.com/embed/9bZkp7q19f0" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="multimedia-content">
+                            <h3>Motion Graphics Intro</h3>
+                            <p>Animated intro sequence created with Adobe After Effects</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">After Effects</span>
+                                <span class="tech-tag">Motion Graphics</span>
+                                <span class="tech-tag">Animation</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Graphic Design Sample -->
+                    <div class="multimedia-item">
+                        <div class="image-container">
+                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Graphic Design Sample">
+                        </div>
+                        <div class="multimedia-content">
+                            <h3>University Poster Design</h3>
+                            <p>Event poster created with Adobe Photoshop and Illustrator</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Photoshop</span>
+                                <span class="tech-tag">Illustrator</span>
+                                <span class="tech-tag">Graphic Design</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- GitHub Activity Section (keep existing) -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">GitHub Activity</h2>
+                <div style="text-align: center; background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow);">
+                    <div style="display: inline-flex; align-items: center; gap: 2rem; flex-wrap: wrap; justify-content: center;">
+                        <div>
+                            <h3 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 0.5rem;">136+</h3>
+                            <p>GitHub Contributions</p>
+                        </div>
+                        <div>
+                            <h3 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 0.5rem;">5+</h3>
+                            <p>Public Repositories</p>
+                        </div>
+                        <div>
+                            <h3 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 0.5rem;">3</h3>
+                            <p>Followers</p>
+                        </div>
+                        <div>
+                            <h3 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 0.5rem;">4</h3>
+                            <p>Following</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1.5rem; color: var(--gray-color);">
+                        <i class="fab fa-github"></i> 
+                        <a href="<%= socialLinks.github %>" target="_blank" style="color: var(--primary-color); text-decoration: none;">
+                            <%= socialLinks.github.replace('https://', '') %>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Projects -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <% projects.slice(0, 3).forEach(project => { %>
+                    <div class="project-card">
+                        <% if (project.video) { %>
+                        <div class="project-image video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="<%= project.title %>">
+                        </div>
+                        <% } else { %>
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="<%= project.title %>" class="project-image">
+                        <% } %>
+                        <div class="project-content">
+                            <h3 class="project-title"><%= project.title %></h3>
+                            <p><%= project.description %></p>
+                            <div class="project-tech">
+                                <% project.technologies.forEach(tech => { %>
+                                <span class="tech-tag"><%= tech %></span>
+                                <% }); %>
+                            </div>
+                            <div class="project-links">
+                                <% if (project.github) { %>
+                                <a href="<%= project.github %>" class="btn btn-primary" target="_blank">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <% } %>
+                                <% if (project.live) { %>
+                                <a href="<%= project.live %>" class="btn btn-secondary" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> View
+                                </a>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="/projects" class="btn btn-primary">View All Projects</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <%- include('partials/chatbot') %>
+    <%- include('partials/footer') %>
+
+    
+    <script>
+    // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and content
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // Video thumbnail play functionality
+        document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const videoUrl = this.closest('.project-card').querySelector('.btn-secondary')?.href;
+                if (videoUrl) {
+                    window.open(videoUrl, '_blank');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

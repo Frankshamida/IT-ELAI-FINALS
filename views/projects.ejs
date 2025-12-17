@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/header') %>
+    
+    <main>
+        <section class="hero" style="padding: 120px 0 60px;">
+            <div class="container">
+                <h1 style="text-align: center; margin-bottom: 1rem;">My Projects</h1>
+                <p style="text-align: center; font-size: 1.125rem; color: var(--gray-color); max-width: 600px; margin: 0 auto;">
+                    Development projects and multimedia creations
+                </p>
+                
+                <div class="project-filters" style="margin-top: 2rem; text-align: center;">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="development">Development</button>
+                    <button class="filter-btn" data-filter="multimedia">Multimedia</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="container">
+                <div class="projects-grid">
+                    <% projects.forEach(project => { %>
+                    <div class="project-card" data-category="<%= project.category || 'development' %>">
+                        <% if (project.video) { %>
+                        <div class="project-image video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="<%= project.title %>">
+                        </div>
+                        <% } else { %>
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="<%= project.title %>" class="project-image">
+                        <% } %>
+                        <div class="project-content">
+                            <div class="project-category">
+                                <span class="category-tag <%= project.category %>">
+                                    <%= project.category === 'multimedia' ? '🎬 Multimedia' : '💻 Development' %>
+                                </span>
+                            </div>
+                            <h3 class="project-title"><%= project.title %></h3>
+                            <p><%= project.description %></p>
+                            <div class="project-tech">
+                                <% project.technologies.forEach(tech => { %>
+                                <span class="tech-tag"><%= tech %></span>
+                                <% }); %>
+                            </div>
+                            <div class="project-links">
+                                <% if (project.github) { %>
+                                <a href="<%= project.github %>" class="btn btn-primary" target="_blank">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <% } %>
+                                <% if (project.live) { %>
+                                <a href="<%= project.live %>" class="btn btn-secondary" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> <% if (project.video) { %>Watch<% } else { %>View<% } %>
+                                </a>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <%- include('partials/chatbot') %>
+    <%- include('partials/footer') %>
+
+    
+    <script>
+        // Project filtering
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Filter projects
+                const filter = button.getAttribute('data-filter');
+                const projects = document.querySelectorAll('.project-card');
+                
+                projects.forEach(project => {
+                    if (filter === 'all' || project.getAttribute('data-category') === filter) {
+                        project.style.display = 'block';
+                    } else {
+                        project.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Video thumbnail click
+        document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const videoUrl = this.closest('.project-card').querySelector('.btn-secondary')?.href;
+                if (videoUrl) {
+                    window.open(videoUrl, '_blank');
+                }
+            });
+        });
+    </script>
+    
+    <style>
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn:hover {
+            background: rgba(37, 99, 235, 0.1);
+        }
+        
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .project-category {
+            margin-bottom: 0.75rem;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .category-tag.development {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .category-tag.multimedia {
+            background: rgba(168, 85, 247, 0.1);
+            color: #8b5cf6;
+        }
+    </style>
+</body>
+</html>
