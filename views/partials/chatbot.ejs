@@ -1,8 +1,8 @@
 <script type="module">
     import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
     Chatbot.init({
-        chatflowid: "2aaa237a-16e0-4d26-b9bf-2bdf4f0c3625",
-        apiHost: "https://cloud.flowiseai.com",
+        chatflowid: "02ae2732-1433-41d3-a8b2-02305cd5d862",
+        apiHost: "https://uakvhrfp.usw.sealos.io",
         chatflowConfig: {
             /* Chatflow Config */
         },
@@ -11,94 +11,127 @@
         },
         theme: {
             button: {
-                backgroundColor: '#3B81F6',
+                backgroundColor: '#3B81F6', // Matches your primary blue color
                 right: 20,
                 bottom: 20,
                 size: 48,
                 dragAndDrop: true,
                 iconColor: 'white',
-                customIconSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
+                customIconSrc: 'https://cdn.jsdelivr.net/npm/@tabler/icons@latest/icons/brand-messenger.svg',
                 autoWindowOpen: {
                     autoOpen: true,
-                    openDelay: 2,
+                    openDelay: 3, // Increased delay to let user see site first
                     autoOpenOnMobile: false
                 }
             },
             tooltip: {
                 showTooltip: true,
-                tooltipMessage: 'Hi There 👋!',
-                tooltipBackgroundColor: 'black',
+                tooltipMessage: '👋 Have questions? Ask me!',
+                tooltipBackgroundColor: '#3B81F6',
                 tooltipTextColor: 'white',
-                tooltipFontSize: 16
+                tooltipFontSize: 14
             },
             disclaimer: {
-                title: 'Disclaimer',
-                message: "By using this chatbot, you agree to the <a target=\"_blank\" href=\"https://flowiseai.com/terms\">Terms & Condition</a>",
-                textColor: 'black',
-                buttonColor: '#3b82f6',
+                title: 'Welcome!',
+                message: "I'm here to help you learn more about <%= name %>'s skills, projects, and services. Feel free to ask about development, multimedia work, or collaboration opportunities.",
+                textColor: '#303235',
+                buttonColor: '#3B81F6',
                 buttonText: 'Start Chatting',
                 buttonTextColor: 'white',
                 blurredBackgroundColor: 'rgba(0, 0, 0, 0.4)',
-                backgroundColor: 'white'
+                backgroundColor: '#ffffff'
             },
-            customCSS: ``,
+            customCSS: `
+                /* Custom animations to match site style */
+                .chat-container {
+                    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+                    border-radius: 12px !important;
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+                }
+                
+                /* Match your button styles */
+                .send-button {
+                    transition: all 0.3s ease !important;
+                }
+                
+                .send-button:hover {
+                    transform: scale(1.05) !important;
+                }
+                
+                /* Style for code tags */
+                code {
+                    background: #f7f8ff !important;
+                    padding: 2px 6px !important;
+                    border-radius: 4px !important;
+                    font-family: 'Courier New', monospace !important;
+                }
+            `,
             chatWindow: {
                 showTitle: true,
                 showAgentMessages: true,
-                title: 'Flowise Bot',
-                titleAvatarSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
-                welcomeMessage: 'Hello! This is Frank, your personal assistant. How can I help you today?',
-                errorMessage: 'This is a custom error message',
+                title: 'AI Assistant',
+                titleAvatarSrc: '/images/profile.jpg', // Your profile image
+                welcomeMessage: `Hi there! I'm here to help you explore <%= name.split(" ")[0] %>'s portfolio. You can ask me about:
+                
+• Development projects and skills
+• Multimedia work (video editing, design)
+• Services offered
+• Technical experience
+• How to get in touch`,
+                errorMessage: 'Sorry, I seem to be having trouble. Please try again or contact directly via the contact form.',
                 backgroundColor: '#ffffff',
-                backgroundImage: 'public/images/profile.jpg',
-                height: 700,
-                width: 400,
-                fontSize: 16,
+                backgroundImage: '', // Remove background image for cleaner look
+                height: 600,
+                width: 380,
+                fontSize: 14,
                 starterPrompts: [
-                    "What is a bot?",
-                    "Who are you?"
+                    "Tell me about your development projects",
+                    "Show me multimedia samples",
+                    "What services do you offer?",
+                    "How can I contact you?"
                 ],
-                starterPromptFontSize: 15,
+                starterPromptFontSize: 14,
                 clearChatOnReload: false,
-                sourceDocsTitle: 'Sources:',
+                sourceDocsTitle: 'References:',
                 renderHTML: true,
                 botMessage: {
-                    backgroundColor: '#f7f8ff',
+                    backgroundColor: '#f7f8ff', // Light blue matching your site
                     textColor: '#303235',
                     showAvatar: true,
-                    avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png'
+                    avatarSrc: '/images/profile.jpg' // Your profile image
                 },
                 userMessage: {
-                    backgroundColor: '#3B81F6',
+                    backgroundColor: '#3B81F6', // Primary blue
                     textColor: '#ffffff',
                     showAvatar: true,
-                    avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png'
+                    avatarSrc: 'https://cdn.jsdelivr.net/npm/@tabler/icons@latest/icons/user-circle.svg' // Generic user icon
                 },
                 textInput: {
-                    placeholder: 'Type your question',
-                    backgroundColor: '#ffffff',
+                    placeholder: 'Ask about projects, skills, or services...',
+                    backgroundColor: '#f8f9fa',
                     textColor: '#303235',
                     sendButtonColor: '#3B81F6',
-                    maxChars: 50,
-                    maxCharsWarningMessage: 'You exceeded the characters limit. Please input less than 50 characters.',
-                    autoFocus: true,
+                    maxChars: 500, // Increased for detailed questions
+                    maxCharsWarningMessage: 'Your message is getting long. Please keep it under 500 characters.',
+                    autoFocus: false, // Don't auto-focus on mobile
                     sendMessageSound: true,
-                    sendSoundLocation: 'send_message.mp3',
+                    sendSoundLocation: 'https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3',
                     receiveMessageSound: true,
-                    receiveSoundLocation: 'receive_message.mp3'
+                    receiveSoundLocation: 'https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3'
                 },
                 feedback: {
-                    color: '#303235'
+                    color: '#3B81F6'
                 },
                 dateTimeToggle: {
                     date: true,
-                    time: true
+                    time: true,
+                    format: 'MM/dd/yyyy hh:mm a'
                 },
                 footer: {
-                    textColor: '#303235',
-                    text: 'Powered by',
-                    company: 'Frank Gomez',
-                    companyLink: 'https://flowiseai.com'
+                    textColor: '#6b7280',
+                    text: 'AI Assistant • Powered by',
+                    company: '<%= name.split(" ")[0] %>',
+                    companyLink: '/'
                 }
             }
         }
